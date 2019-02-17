@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id='btn1'>btn1</button>
+    <a href='https://www.baidu.com' id='link1'>a标签</a>
+    <div id='div1'>
+        <p id='p1'>激活</p>
+        <p id='p2'>取消</p>
+        <p id='p3'>取消</p>
+        <p id='p4'>取消</p>
+    </div>
+    <div id='div2'>
+        <p id='p5'>激活</p>
+        <p id='p6'>取消</p>
+    </div>
+    <div id='div3'>
+        <a href='#'>a1</a>
+        <a href='#'>a2</a>
+        <a href='#'>a3</a>
+        <a href='#'>a4</a>
+        <a href='#'>a5</a>
+    </div>
+    <script>
+        var btn = document.getElementById('btn1')
+        btn.addEventListener('click',function(event){
+            console.log('clicked')
+        })
+        function bindEvent(elem,type,fn) {
+            elem.addEventListener(type,fn)
+        }
+        var a = document.getElementById('link1')
+        bindEvent(a,'click',function(e){
+            e.preventDefault()
+            alert('clicked')
+        })
+        var p1 = document.getElementById('p1')
+        var body = document.body
+        bindEvent(p1,'click',function(e){
+            // e.stopPropagation()
+            console.log('激活')
+        })
+        bindEvent(body,'click',function(e){
+            console.log('取消')
+        })
+        var div1 = document.getElementById('div1')
+        bindEvent(div1,'click',function(e){
+            console.log('我是div1')
+        })
+        var div3 = document.getElementById('div3')
+        div3.addEventListener('click',function(e){
+            var target = e.target
+            if(target.tagName === 'A') {
+                console.log(target)
+            }
+        })
+    </script>
+</body>
+</html>
